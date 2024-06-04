@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Detail Page
+{% endblock %}
+
+{% block content %}
+        <img src="{{item.image}}" width=200 height=100>
+        <p>Name - {{item.name}}</p>
+        <p>Description - {{item.description}}</p>
+        <p>Price - {{item.price}}</p>
+        <p>Category - {{item.category.name}}</p>
+
+        <a href="{% url 'item:edit' item.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl">Edit</a>
+        <a href="{% url 'item:delete' item.id  %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl">Delete</a>
+{% endblock %}

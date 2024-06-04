@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Create An Item
+{% endblock %}
+
+{% block content %}
+    {% if action == "create" %}
+        {% url 'item:create' as ur %} 
+    {% else %}
+        {% url 'item:edit' as ur %} 
+    {% endif %}
+    <form method='POST' action="{{url}}">
+        {% csrf_token %}
+        <div>
+            {{ form.as_p }}
+        </div>
+        {% if form.non_field_errors or form.field_errors %}
+            <div>
+                {% for field in form %}
+                    <p>{{field.errors}}</p>
+                {% endfor %}
+
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+        <button class="mt-6 py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Submit</button>
+    </form> 
+{% endblock %}

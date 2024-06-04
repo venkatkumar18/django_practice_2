@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Shopify
+{% endblock%}
+
+{% block content %}
+<h2> Welcome to items Homepage</h2>
+<h2> Categories </h2>
+{% for category in categories %}
+    <p>Name - {{category.name}}</p>
+    <p>Available Count - {{category.items.count}}</p>
+{% endfor %}
+
+<h2> Here is a list of items that are in stock </h2>
+{% for item in items %}
+    <img src="{{item.image}}" width="200" height="100">
+    <a href="{% url 'item:detail' item.id %}"><p>Name - {{item.name}}</p><a>
+    <p>Price - {{item.price}} </p>
+{% endfor %}
+{% endblock %}
